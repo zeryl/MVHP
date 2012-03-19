@@ -1,16 +1,27 @@
 MOTD: "Precipice Games MC Server!"
 
-survival:
+#canon stuff defined here
+s: &survival
   port: 25565
   ip: 76.64.45.138
-  alias: [mcsurvive, survive, mcsurvival]
 
-creative:
+c: &creative
   port: 25565
   ip: 184.107.58.181
-  alias: [mccreate, create, creative, mccreative]
+
   
-ff:
+ff: &space
   port: 25565
   ip: 70.34.195.234
-  alias: [finalfrontier, space]
+
+#lists of aliases
+survival: *survival
+mcsurvive: *survival
+survive: *survival
+mcsurvival: *survival
+creative: *creative
+mccreate: *creative
+create: *creative
+mccreative: *creative
+finalfrontier: *space
+space: *space
