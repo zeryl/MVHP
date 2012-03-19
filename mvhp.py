@@ -11,13 +11,14 @@ import asynchat
 import socket
 import re
 from struct import pack, unpack
+import yaml
 
 # Virtual host definitions
-HOSTS = {
-    "localhost": {"host": "localhost", "port": 25566},
-    "127.0.0.1": {"port": 25567},   # host defaults to 'localhost'
-    None: {"port": 25568}           # default / fallback
-}
+#HOSTS = {
+#    "localhost": {"host": "localhost", "port": 25566},
+#    "127.0.0.1": {"port": 25567},   # host defaults to 'localhost'
+#    None: {"port": 25568}           # default / fallback
+#}
 
 # Since the host is not sent in the server list query, this is static.
 # This might (hopefully) change in the near future.
@@ -25,6 +26,9 @@ MOTD = "Minecraft VirtualHost Proxy"
 MAX_PLAYERS = 10
 CUR_PLAYERS = 3
 
+def load_config():
+    stream = file('config.yml', 'r')
+    return yaml.load(stream)
 
 def pack_string(string):
     '''
@@ -60,6 +64,7 @@ class Router:
         '''
         Finds the target host and port based on the handshake string.
         '''
+        HOSTS = load_config()
         host = Router.find_host(name)
         target = HOSTS.get(host)
         return (target.get("host", "localhost"), target.get("port", 25565))
@@ -69,6 +74,7 @@ class Router:
         '''
         Extracts the host from the handshake string.
         '''
+        HOSTS = load_config()
         match = re.match(Router.PATTERN, name)
         if match is None:
             return
