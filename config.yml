@@ -1,3 +1,16 @@
-localhost:
+MOTD: "Precipice Games MC Server!"
+
+survival:
   port: 25565
-  ip: 127.0.0.1
+  ip: 76.64.45.138
+  alias: [mcsurvive, survive, mcsurvival]
+
+creative:
+  port: 25565
+  ip: 184.107.58.181
+  alias: [mccreate, create, creative, mccreative]
+  
+ff:
+  port: 25565
+  ip: 70.34.195.234
+  alias: [finalfrontier, space]
